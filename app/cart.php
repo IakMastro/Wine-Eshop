@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Κρασί</title>
+    <title>Καλάθι - Το κρασί του Μιχάλη Κερκόπουλου</title>
 
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -27,7 +27,7 @@
 
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <div class="navbar-nav">
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" href="cart.php">Καλάθι</a>
                 </li>
 
@@ -43,7 +43,7 @@
     </nav>
 
     <div class="jumbotron text-center" style="margin-bottom: 0">
-        <p>Code with &#10084;&#65039; by iakmastro</p>
+        <p>Coded with &#10084;&#65039; by iakmastro</p>
     </div>
 </body>
 </html>
