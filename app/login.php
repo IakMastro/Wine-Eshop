@@ -18,6 +18,11 @@
         <p>Το νούμερο 1 μερός αγοράς κρασιού στο ίντερνετ!</p>
     </div>
 
+    <?php
+    include "php/db.php";
+    getAccount($_GET['email'], $_GET['pwd'])
+    ?>
+
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <a class="navbar-brand" href="index.php">Μενού</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -68,6 +73,11 @@
             <div class="form-group">
                 <label for="email">Email:</label>
                 <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+            </div>
+
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" class="form-control" id="username" placeholder="Enter a username" name="username">
             </div>
 
             <div class="form-group">
