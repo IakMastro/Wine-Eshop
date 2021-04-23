@@ -14,8 +14,10 @@
 </head>
 
 <body>
+    <?php session_start();?>
+
     <div class="jumbotron text-center" style="margin-bottom: 0;">
-        <h1>Το κρασί του Μπάμπη Ποτερίδη</h1>
+        <h1>Το κρασί του Μιχάλη Κερκόπουλου</h1>
         <p>Το νούμερο 1 μερός αγοράς κρασιού στο ίντερνετ!</p>
     </div>
 
@@ -25,21 +27,36 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <div class="navbar-nav">
-                <li class="nav-item active">
+                <?php if (isset($_SESSION['username'])) {?>
+                <li class="nav-item">
                     <a class="nav-link" href="cart.php">Καλάθι</a>
                 </li>
+                <?php }?>
 
+                <?php if (isset($_SESSION['type']) && $_SESSION['type'] == 'admin') {?>
                 <li class="nav-item">
                     <a class="nav-link" href="admin.php">Admin</a>
                 </li>
+                <?php }?>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="login.php">Σύνδεση/εγγραφή</a>
+                <?php if (isset($_SESSION['username'])) {?>
+                    <div class="dropdown">
+                        <button class="nav-item btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <?php echo $_SESSION["username"];?>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="php/sign_out.php">Αποσύνδεση</a>
+                            <a class="dropdown-item" href="#">Προηγούμενες παραγγελίες</a>
+                        </div>
+                        </div>
+                <?php } else {?>
+                    <a class="nav-link" href="account.php">Σύνδεση/εγγραφή</a>
+                <?php } ?>
                 </li>
             </div>
-        </div>
     </nav>
 
     <div class="jumbotron text-center" style="margin-bottom: 0">

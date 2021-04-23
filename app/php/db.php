@@ -15,13 +15,16 @@ function getAccount($email, $pwd) {
         die("Connection failed...".mysqli_connect_error());
     }
 
-    $sql = "SELECT email, username, password, type FROM account
+    $sql = "SELECT username, type FROM account
     WHERE email = '{$email}' AND password = '{$pwd}'";
     $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
 
     if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-            echo "nickname:".$row["username"];
+            session_start();
+            $_SESSION['username'] = $row['username'];
+            $_SESSION['type'] = $row['type'];
+            return true;
         }
     }
 }
