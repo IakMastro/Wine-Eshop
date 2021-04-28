@@ -10,6 +10,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="js/account.js"></script>
 </head>
 
 <body>
@@ -51,7 +53,7 @@
                             <a class="dropdown-item" href="php/sign_out.php">Αποσύνδεση</a>
                             <a class="dropdown-item" href="#">Προηγούμενες παραγγελίες</a>
                         </div>
-                        </div>
+                    </div>
                 <?php } else {?>
                     <a class="nav-link" href="account.php">Σύνδεση/εγγραφή</a>
                 <?php } ?>
@@ -66,7 +68,9 @@
     <div class="container">
         <br>
         <h5>Καλώς ορίσατε πίσω!</h5>
-        <form action="php/login.php" method="get">
+        <div class="loginDiv">
+            <div id="loginMessage"></div>
+
             <div class="form-group">
                 <label for="email">Email:</label>
                 <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
@@ -81,34 +85,31 @@
                 <label><input type="checkbox" name="remember" id="rememberMe">  Remember me?</label>
             </div>
 
-            <button type="submit" class="btn btn-default">Σύνδεση</button>
-        </form>
+            <button type="submit" id="login" class="btn btn-default">Σύνδεση</button>
+        </div>
 
         <hr>
         <h5>Νεός χρήστης;</h5>
-        <form action="php/login.php" method="post">
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
-            </div>
+        <div class="signupDiv">
+            <div id="signupMessage"></div>
 
             <div class="form-group">
-                <label for="username">Username:</label>
-                <input type="text" class="form-control" id="username" placeholder="Enter a username" name="username">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="new_email" placeholder="Enter email" name="email">
             </div>
 
             <div class="form-group">
                 <label for="pwd">Κωδικός πρόσβασης:</label>
-                <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+                <input type="password" class="form-control" id="new_pwd" placeholder="Enter password" name="pwd">
             </div>
 
             <div class="form-group">
                 <label for="pwd">Επανέλαβε τον κωδικό:</label>
-                <input type="rePassword" class="form-control" id="pwd" placeholder="Retype password" name="pwd">
+                <input type="password" class="form-control" id="repeat_pwd" placeholder="Retype password" name="pwd">
             </div>
 
-            <button type="submit" class="btn btn-default">Εγγραφή</button>
-        </form>
+            <button type="submit" id="signup" class="btn btn-default">Εγγραφή</button>
+        </div>
         <br></br>
     </div>
     <?php } ?>

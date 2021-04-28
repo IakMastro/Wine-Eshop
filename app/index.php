@@ -35,7 +35,7 @@
                 </li>
                 <?php }?>
 
-                <?php if (isset($_SESSION['type']) && $_SESSION['type'] === "admin") {?>
+                <?php if (isset($_SESSION['type']) && $_SESSION['type'] == "admin") {?>
                 <li class="nav-item">
                     <a class="nav-link" href="admin.php">Admin</a>
                 </li>
@@ -78,12 +78,12 @@
             <div class="col-sm-8">
                 <h2>ΚΟΚΚΙΝΟ ΚΡΑΣΙ - ΕΜΦΙΑΛΩΜΕΝΟ</h2>
                 <img src="img/emfialomeno.jpg" alt="Εμφιαλωμένο κοκκίνο κρασί">
-                <p>Περιγραφή</p>
+                <p>Το αγαπήμενο σας κρασί εμφιαλωμένο. Σας το δίνουμε στην ιντερνική προσφόρα των 5 ευρώ ανά λίτρο.</p>
                 <button class="btn btn-primary">Προσθήκη στο καλάθι</button><br><br><br>
 
                 <h2>ΚΟΚΚΙΝΟ ΚΡΑΣΙ - ΧΥΜΑ</h2>
                 <img src="img/xima.jpg" alt="Χύμα κόκκινο κρασί">
-                <p>Περιγραφή</p>
+                <p>Χύμα κράσι, φτιαγμένο από έμας, με αγάπη. 10 ευρώ ανά λίτρο.</p>
                 <button class="btn btn-primary">Προσθήκη στο καλάθι</button><br><br><br>
             </div>
         </div>
