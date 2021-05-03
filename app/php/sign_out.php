@@ -1,6 +1,8 @@
 <?php
     session_start();
-    $_SESSION['username'] = null;
-    $_SESSION['type'] = null;
+    unset($_SESSION['user_id']);
+    unset($_SESSION['username']);
+    unset($_SESSION['type']);
+    unset($_SESSION['cart']);
     header('Location: ../index.php');
 ?>

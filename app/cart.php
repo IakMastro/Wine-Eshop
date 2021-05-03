@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Καλάθι - Το κρασί του Μιχάλη Κερκόπουλου</title>
 
-    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -58,6 +57,41 @@
                 </li>
             </div>
     </nav>
+
+    <?php
+    if (!isset($_SESSION['username'])) {
+        header("Location: index.php");
+    } else {
+    ?>
+    <br>
+    <h2>Καλάθι αγορών</h5>
+    <hr>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Κωδικός Προϊόντος</th>
+                <th scope="col">Όνομα προϊόντος</th>
+                <th scope="col">Τιμή ανά λίτρο</th>
+                <th scope="col">Ποσότητα</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach($_SESSION['cart'] as $product) { ?>
+            <tr>
+                <td><?php echo $product['product_id'];?></td>
+                <td><?php echo $product['name'];?></td>
+                <td><?php echo $product['cost_per_litre'];?></td>
+                <td><?php echo $product['quantity']?></td>
+            </tr>
+            <?php }?>
+        </tbody>
+    </table>
+    <hr>
+
+    <h3>Τελική τιμή <span id="teliki_timi">0</span> &euro;</h3>
+    <br>
+    <button class="btn btn-primary">Αγορά</button>
+    <?php }?>
 
     <div class="jumbotron text-center" style="margin-bottom: 0">
         <p>Coded with &#10084;&#65039; by iakmastro</p>

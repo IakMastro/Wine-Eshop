@@ -1,6 +1,7 @@
 <?php
     require "db.php";
-    if (getAccount($_POST['email'], $_POST['pwd'])) {
+
+    if (addToBasket($_POST['productType'])) {
         echo 1;
     } else {
         echo 0;

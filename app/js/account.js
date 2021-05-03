@@ -1,3 +1,5 @@
+const mailFormat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+$/;
+
 $(document).ready(function() {
     $("#login").click(function() {
         var email = $("#email").val().trim();
@@ -24,8 +26,8 @@ $(document).ready(function() {
                 }
             })
         }
-    })
-})
+    });
+});
 
 $(document).ready(function() {
     $("#signup").click(function() {
@@ -34,35 +36,39 @@ $(document).ready(function() {
         var repeatPwd = $("#repeat_pwd").val().trim();
 
         if (email != "" && password != "" && password == repeatPwd) {
-            $.ajax({
-                url: 'php/check.php',
-                type: 'post',
-                data: {
-                    email: email,
-                },
-                success: function(res) {
-                    var msg = "";
+            if (email.match(mailFormat)) {
+                $.ajax({
+                    url: 'php/check.php',
+                    type: 'post',
+                    data: {
+                        email: email,
+                    },
+                    success: function(res) {
+                        var msg = "";
 
-                    if (res == 0) {
-                        $.ajax({
-                            url: 'php/sign_up.php',
-                            type: 'post',
-                            data: {
-                                email: email,
-                                username: email.split("@")[0],
-                                password: password,
-                            },
-                            success: function() {
-                                alert("Account created!");
-                            }
-                        })
-                    } else if (res == 1) {
-                        msg = "Email already used";
+                        if (res == 0) {
+                            $.ajax({
+                                url: 'php/sign_up.php',
+                                type: 'post',
+                                data: {
+                                    email: email,
+                                    username: email.split("@")[0],
+                                    password: password,
+                                },
+                                success: function() {
+                                    alert("Account created!");
+                                }
+                            })
+                        } else if (res == 1) {
+                            msg = "Email already used";
+                        }
+
+                        $("#signupMessage").html(msg);
                     }
-
-                    $("#signupMessage").html(msg);
-                }
-            })
+                })
+            } else {
+                $("#signupMessage").html("Give a proper email format ");
+            }
         }
-    })
-})
+    });
+});
