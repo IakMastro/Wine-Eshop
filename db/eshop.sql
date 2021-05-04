@@ -22,11 +22,19 @@ CREATE TABLE product (
 CREATE TABLE orders (
     order_id INT PRIMARY KEY AUTO_INCREMENT,
     account_id INT,
-    product_id INT,
     final_cost FLOAT,
-    litre FLOAT,
+    payment VARCHAR (200),
     approved BOOLEAN,
-    FOREIGN KEY (account_id) REFERENCES account(account_id),
+    FOREIGN KEY (account_id) REFERENCES account(account_id)
+);
+
+CREATE TABLE order_details (
+    order_id INT,
+    product_id INT,
+    litre INT,
+    cost FLOAT,
+    PRIMARY KEY (order_id, product_id),
+    FOREIGN KEY (order_id) REFERENCES orders(order_id),
     FOREIGN KEY (product_id) REFERENCES product(product_id)
 );
 
@@ -35,7 +43,7 @@ INSERT INTO account (email, username, password, type) VALUES (
 );
 
 INSERT INTO product (name, type, cost_per_litre) VALUES (
-    "Εμφιαλωμένο κόκκινο κράσι", "emfaliwmeno", 5
+    "Εμφιαλωμένο κόκκινο κράσι", "emfialomeno", 5
 );
 
 INSERT INTO product (name, type, cost_per_litre) VALUES (

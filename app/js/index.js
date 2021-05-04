@@ -1,6 +1,6 @@
 $(document).ready(function() {
     $("#emfialomenoBtn").click(function() {
-        addToBasket("emfaliwmeno");
+        addToBasket("emfialomeno");
     });
 
     $("#xumaBtn").click(function() {

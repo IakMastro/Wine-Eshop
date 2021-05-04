@@ -10,6 +10,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="js/cart.js"></script>
 </head>
 
 <body>
@@ -66,31 +67,65 @@
     <br>
     <h2>Καλάθι αγορών</h5>
     <hr>
-    <table class="table">
+    <table class="table" id="cartTable">
         <thead class="thead-dark">
             <tr>
-                <th scope="col">Κωδικός Προϊόντος</th>
+                <th scope="col">Κωδικός προϊόντος</th>
                 <th scope="col">Όνομα προϊόντος</th>
                 <th scope="col">Τιμή ανά λίτρο</th>
                 <th scope="col">Ποσότητα</th>
+                <th scope="col">Τιμή</th>
             </tr>
         </thead>
         <tbody>
             <?php foreach($_SESSION['cart'] as $product) { ?>
             <tr>
-                <td><?php echo $product['product_id'];?></td>
+                <td><span class="id" id="id"><?php echo $product['product_id'];?></span></td>
                 <td><?php echo $product['name'];?></td>
-                <td><?php echo $product['cost_per_litre'];?></td>
-                <td><?php echo $product['quantity']?></td>
+                <td><span class="price" id="price"><?php echo $product['cost_per_litre'];?></span></td>
+                <td><span class="qty" id="qty"><?php echo $product['quantity']?></span></td>
+                <td><span class="amount" id="amount">0</span> &euro;</td>
             </tr>
             <?php }?>
         </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="2"></td>
+            <td align="right">
+                <h3>Τελική τιμή <span id="final_price" class="final_price">0</span> &euro;</h3>
+            </td>
+            <td></td>
+        </tr>
+        </tfoot>
     </table>
     <hr>
+    <div class="row">
+        <div class="col-sm-8">
+            <h4>Τρόπος πληρωμής</h4>
 
-    <h3>Τελική τιμή <span id="teliki_timi">0</span> &euro;</h3>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio"
+                        name="paymentOptions" id="cash" value="cash" checked>
+                <label class="form-check-label" for="cash">Αντικαταβολή - μετρητά</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio"
+                        name="paymentOptions" id="card" value="card">
+                <label class="form-check-label" for="card">Πιστωτική κάρτα</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio"
+                        name="paymentOptions" id="paypal" value="paypal">
+                <label class="form-check-label" for="paypal">Paypal</label>
+            </div>
+
+            <br>
+            <button class="btn btn-primary" id="order">Καταχώρηση παραγγελίας</button>
+        </div>
+    </div>
     <br>
-    <button class="btn btn-primary">Αγορά</button>
     <?php }?>
 
     <div class="jumbotron text-center" style="margin-bottom: 0">

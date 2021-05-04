@@ -2,8 +2,8 @@
     require "db.php";
 
     if (checkIfEmailExists($_POST['email']))
-            echo 1;
+        echo 1;
 
-        else
-            echo 0;
+    else
+        echo 0;
 ?>

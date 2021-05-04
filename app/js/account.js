@@ -69,6 +69,8 @@ $(document).ready(function() {
             } else {
                 $("#signupMessage").html("Give a proper email format ");
             }
+        } else if (password != repeatPwd) {
+            $("#signupMessage").html("The two password must match");
         }
     });
 });

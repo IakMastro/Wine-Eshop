@@ -15,14 +15,14 @@ function getAccount($email, $pwd) {
         die("Connection failed...".mysqli_connect_error());
     }
 
-    $sql = "SELECT username, type FROM account
+    $sql = "SELECT account_id, username, type FROM account
                 WHERE email = '{$email}' AND password = '{$pwd}'";
     $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
 
     if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
             session_start();
-            $_SESSION['user_id'] = $row['account_id'];
+            $_SESSION['account_id'] = $row['account_id'];
             $_SESSION['username'] = $row['username'];
             $_SESSION['type'] = $row['type'];
         }
@@ -39,20 +39,6 @@ function checkIfEmailExists($email) {
     }
 
     $sql = "SELECT email FROM account WHERE email = '{$email}'";
-    $result  = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-
-    if (mysqli_num_rows($result) > 0)
-        return true;
-}
-
-function checkIfUsernameExists($username) {
-    $conn = initConn();
-
-    if (!$conn) {
-        die("Connection failed...".mysqli_connect_error());
-    }
-
-    $sql = "SELECT username FROM account WHERE username = '{$username}'";
     $result  = mysqli_query($conn, $sql) or die(mysqli_error($conn));
 
     if (mysqli_num_rows($result) > 0)
@@ -102,5 +88,39 @@ function addToBasket($type) {
             return true;
         }
     }
+}
+
+function addOrder($final_cost, $payment) {
+    session_start();
+    $conn = initConn();
+
+    if (!$conn) {
+        die("Connection failed...").mysqli_connect_error();
+    }
+
+    $query = "INSERT INTO orders (account_id, final_cost, payment, approved)
+                    VALUES ('{$_SESSION['account_id']}', '{$final_cost}', '{$payment}', FALSE)";
+    $result = mysqli_query($conn, $query) or die("Could not perform query");
+
+    $sql = "SELECT order_id FROM orders WHERE account_id = '{$_SESSION['account_id']}'
+                AND final_cost = '{$final_cost}' AND payment = '{$payment}' AND NOT approved";
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) > 0)
+        while ($row = mysqli_fetch_assoc($result))
+            $_SESSION['order_id'] = $row['order_id'];
+}
+
+function addOrderDetail($product_id, $litre, $cost) {
+    session_start();
+    $conn = initConn();
+
+    if (!$conn) {
+        die("Connection failed...").mysqli_connect_error();
+    }
+
+    $query = "INSERT INTO order_details VALUES ('{$_SESSION['order_id']}',
+                '{$product_id}', '{$litre}', '{$cost}')";
+    $result = mysqli_query($conn, $query) or die("Could not perform action");
 }
 ?>
