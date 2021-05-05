@@ -74,3 +74,13 @@ $(document).ready(function() {
         }
     });
 });
+
+$(document).ready(function() {
+    $(".orders").ready(function() {
+        $.ajax({
+            url: 'php/getUserOrders.php',
+            type: 'get',
+            data: { user: 'user' }
+        });
+    });
+});

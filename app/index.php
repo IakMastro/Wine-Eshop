@@ -51,7 +51,7 @@
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" href="php/sign_out.php">Αποσύνδεση</a>
-                            <a class="dropdown-item" href="#">Προηγούμενες παραγγελίες</a>
+                            <a class="dropdown-item" href="account.php">Προηγούμενες παραγγελίες</a>
                         </div>
                         </div>
                 <?php } else {?>

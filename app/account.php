@@ -51,7 +51,7 @@
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" href="php/sign_out.php">Αποσύνδεση</a>
-                            <a class="dropdown-item" href="#">Προηγούμενες παραγγελίες</a>
+                            <a class="dropdown-item" href="account.php">Προηγούμενες παραγγελίες</a>
                         </div>
                     </div>
                 <?php } else {?>
@@ -112,8 +112,42 @@
         </div>
         <br></br>
     </div>
-    <?php } ?>
 
+    <?php } else { ?>
+        <div class="orders">
+            <h3>Παραγγελίες</h3>
+            <hr>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Κωδικός παραγγελίας</th>
+                        <th scope="col">Κωδικός πελάτη</th>
+                        <th scope="col">Τελική τιμή</th>
+                        <th scope="col">Τρόπος πληρωμής</th>
+                        <th scope="col">Έγκριση</th>
+                        <th colspan="2" />
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    if (isset($_SESSION['orders'])) {
+                        foreach($_SESSION['orders'] as $order) {?>
+                            <tr>
+                                <td><?php echo $order['order_id']; ?></td>
+                                <td><?php echo $order['account_id']; ?></td>
+                                <td><?php echo $order['final_cost']; ?></td>
+                                <td><?php echo $order['payment']; ?></td>
+                                <td><?php echo $order['approved']; ?></td>
+                                <td><button class="btn btn-info">Λεπτομέριες</button></td>
+                            </tr>
+                        <?php }
+                    } else {?>
+                        <tr><td>Δεν υπάρχουν παρραγελίες</td></tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </div>
+    <?php }?>
     <div class="jumbotron text-center" style="margin-bottom: 0">
         <p>Coded with &#10084;&#65039; by iakmastro</p>
     </div>
