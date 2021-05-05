@@ -55,7 +55,7 @@
                         </div>
                     </div>
                 <?php } else {?>
-                    <a class="nav-link" href="account.php">Σύνδεση/εγγραφή</a>
+                    <a class="nav-link active" href="account.php">Σύνδεση/εγγραφή</a>
                 <?php } ?>
                 </li>
             </div>

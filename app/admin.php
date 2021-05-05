@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Το κρασί του Μιχάλη Κερκόπουλου</title>
 
-    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="js/admin.js"></script>
 </head>
 
 <body>
@@ -36,7 +37,7 @@
 
             <?php if (isset($_SESSION['type']) && $_SESSION['type'] == 'admin') {?>
             <li class="nav-item">
-                <a class="nav-link" href="admin.php">Admin</a>
+                <a class="nav-link active" href="admin.php">Admin</a>
             </li>
             <?php }?>
 
@@ -58,6 +59,51 @@
             </li>
         </div>
     </nav>
+
+    <?php
+    if (!isset($_SESSION['username'])) {
+        header("Location: index.php");
+    } else {
+    ?>
+
+    <br>
+    <h2>Σελίδα διαχείρησης</h2>
+    <hr>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Κωδικός παραγγελίας</th>
+                <th scope="col">Κωδικός πελάτη</th>
+                <th scope="col">Τελική τιμή</th>
+                <th scope="col">Τρόπος πληρωμής</th>
+                <th scope="col">Έγκριση</th>
+                <th colspan="2" />
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            if (isset($_SESSION['orders'])) {
+                foreach($_SESSION['orders'] as $order) {?>
+                    <tr>
+                        <td><?php echo $order['order_id']; ?></td>
+                        <td><?php echo $order['account_id']; ?></td>
+                        <td><?php echo $order['final_cost']; ?></td>
+                        <td><?php echo $order['payment']; ?></td>
+                        <td><?php echo $order['approved']; ?></td>
+                        <td><button class="btn btn-info">Λεπτομέριες</button></td>
+
+                        <?php if($order['approved'] == 'Όχι') { ?>
+                            <td><button class="btn btn-danger">Αποδοχή</button></td>
+                        <?php }?>
+                    </tr>
+                <?php }
+            } else {?>
+                <tr><td>Δεν υπάρχουν παρραγελίες</td></tr>
+            <?php } ?>
+        </tbody>
+    </table>
+
+    <?php }?>
 
     <div class="jumbotron text-center" style="margin-bottom: 0">
         <p>Coded with &#10084;&#65039; by iakmastro</p>

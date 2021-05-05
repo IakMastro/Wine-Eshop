@@ -30,7 +30,7 @@
             <div class="navbar-nav">
                 <?php if (isset($_SESSION['username'])) {?>
                 <li class="nav-item">
-                    <a class="nav-link" href="cart.php">Καλάθι</a>
+                    <a class="nav-link active" href="cart.php">Καλάθι</a>
                 </li>
                 <?php }?>
 
@@ -78,14 +78,19 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach($_SESSION['cart'] as $product) { ?>
-            <tr>
-                <td><span class="id" id="id"><?php echo $product['product_id'];?></span></td>
-                <td><?php echo $product['name'];?></td>
-                <td><span class="price" id="price"><?php echo $product['cost_per_litre'];?></span></td>
-                <td><span class="qty" id="qty"><?php echo $product['quantity']?></span></td>
-                <td><span class="amount" id="amount">0</span> &euro;</td>
-            </tr>
+            <?php
+            if (isset($_SESSION['cart'])) {
+                foreach($_SESSION['cart'] as $product) { ?>
+                    <tr>
+                        <td><span class="id" id="id"><?php echo $product['product_id'];?></span></td>
+                        <td><?php echo $product['name'];?></td>
+                        <td><span class="price" id="price"><?php echo $product['cost_per_litre'];?></span></td>
+                        <td><span class="qty" id="qty"><?php echo $product['quantity']?></span></td>
+                        <td><span class="amount" id="amount">0</span> &euro;</td>
+                    </tr>
+                <?php }
+            } else { ?>
+                <tr><td>Το καλάθι είναι άδειο</td></tr>
             <?php }?>
         </tbody>
         <tfoot>
@@ -105,19 +110,19 @@
 
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio"
-                        name="paymentOptions" id="cash" value="cash" checked>
+                        name="paymentOptions" id="cash" value="Μετρητά" checked>
                 <label class="form-check-label" for="cash">Αντικαταβολή - μετρητά</label>
             </div>
 
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio"
-                        name="paymentOptions" id="card" value="card">
+                        name="paymentOptions" id="card" value="Κάρτα">
                 <label class="form-check-label" for="card">Πιστωτική κάρτα</label>
             </div>
 
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio"
-                        name="paymentOptions" id="paypal" value="paypal">
+                        name="paymentOptions" id="paypal" value="Paypal">
                 <label class="form-check-label" for="paypal">Paypal</label>
             </div>
 
