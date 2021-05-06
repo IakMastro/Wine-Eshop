@@ -12,6 +12,13 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <script src="js/admin.js"></script>
+    <script src="js/get_order_details.js"></script>
+
+    <style>
+    .modal-body {
+        overflow-x: auto;
+    }
+    </style>
 </head>
 
 <body>
@@ -63,13 +70,13 @@
     <?php
     if (!isset($_SESSION['username'])) {
         header("Location: index.php");
-    } else {
+    }
     ?>
 
     <br>
     <h2>Σελίδα διαχείρησης</h2>
     <hr>
-    <table class="table">
+    <table class="table" id="orders">
         <thead class="thead-dark">
             <tr>
                 <th scope="col">Κωδικός παραγγελίας</th>
@@ -85,12 +92,12 @@
             if (isset($_SESSION['orders'])) {
                 foreach($_SESSION['orders'] as $order) {?>
                     <tr>
-                        <td><?php echo $order['order_id']; ?></td>
+                        <td><span class="order"><?php echo $order['order_id']; ?></span></td>
                         <td><?php echo $order['account_id']; ?></td>
                         <td><?php echo $order['final_cost']; ?></td>
                         <td><?php echo $order['payment']; ?></td>
                         <td><?php echo $order['approved']; ?></td>
-                        <td><button class="btn btn-info">Λεπτομέριες</button></td>
+                        <td><button id="detailsBtn" class="btn btn-info">Λεπτομέριες</button></td>
 
                         <?php if($order['approved'] == 'Όχι') { ?>
                             <td><button class="btn btn-danger">Αποδοχή</button></td>
@@ -102,11 +109,51 @@
             <?php } ?>
         </tbody>
     </table>
-
-    <?php }?>
-
     <div class="jumbotron text-center" style="margin-bottom: 0">
         <p>Coded with &#10084;&#65039; by iakmastro</p>
+    </div>
+
+    <div class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Πληροφορίες παραγγελίας</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Κωδικός παραγγελίας</th>
+                                <th scope="col">Κωδικός προϊόντος</th>
+                                <th scope="col">Όνομα προϊόντος</th>
+                                <th scope="col">Λίτρα</th>
+                                <th scope="col">Κόστος ανά λίτρο</th>
+                                <th scope="col">Τιμή προϊόντος</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            foreach($_SESSION['order_details'] as $order) {?>
+                                <tr>
+                                    <td><?php echo $order['order_id']; ?></td>
+                                    <td><?php echo $order['product_id']; ?></td>
+                                    <td><?php echo $order['name']; ?></td>
+                                    <td><?php echo $order['litre']; ?></td>
+                                    <td><?php echo $order['cost_per_litre']; ?></td>
+                                    <td><?php echo $order['cost']; ?></td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>

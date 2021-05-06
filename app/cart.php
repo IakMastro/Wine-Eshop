@@ -62,8 +62,7 @@
     <?php
     if (!isset($_SESSION['username'])) {
         header("Location: index.php");
-    } else {
-    ?>
+    } ?>
     <br>
     <h2>Καλάθι αγορών</h5>
     <hr>
@@ -131,7 +130,6 @@
         </div>
     </div>
     <br>
-    <?php }?>
 
     <div class="jumbotron text-center" style="margin-bottom: 0">
         <p>Coded with &#10084;&#65039; by iakmastro</p>
