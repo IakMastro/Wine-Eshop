@@ -100,7 +100,7 @@
                         <td><button id="detailsBtn" class="btn btn-info">Λεπτομέριες</button></td>
 
                         <?php if($order['approved'] == 'Όχι') { ?>
-                            <td><button class="btn btn-danger">Αποδοχή</button></td>
+                            <td><button id="approveBtn" class="btn btn-danger">Αποδοχή</button></td>
                         <?php }?>
                     </tr>
                 <?php }

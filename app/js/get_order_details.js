@@ -9,7 +9,6 @@ $(document).ready(function() {
                     order_id: orderId
                 },
                 success: function(res) {
-                    // window.location = "order_details.php ";
                     $('.modal').modal('show');
                 }
             });

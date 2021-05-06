@@ -222,4 +222,15 @@ function getOrderDetails($order_id) {
         unset($_SESSION['order_details']);
     }
 }
+
+function approveOrder($order_id) {
+    $conn = initConn();
+
+    if (!$conn) {
+        die("Connection failed...").mysqli_connect_error();
+    }
+
+    $sql = "UPDATE orders SET approved = TRUE WHERE order_id = '{$order_id}'";
+    $result = mysqli_query($conn, $sql) or die("Could not perform query");
+}
 ?>
