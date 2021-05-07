@@ -88,10 +88,6 @@
                 <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
             </div>
 
-            <div class="checkbox">
-                <label><input type="checkbox" name="remember" id="rememberMe">  Remember me?</label>
-            </div>
-
             <button type="submit" id="login" class="btn btn-default">Σύνδεση</button>
         </div>
 

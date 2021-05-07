@@ -51,7 +51,7 @@
                             <a class="dropdown-item" href="php/sign_out.php">Αποσύνδεση</a>
                             <a class="dropdown-item" href="account.php">Προηγούμενες παραγγελίες</a>
                         </div>
-                        </div>
+                    </div>
                 <?php } else {?>
                     <a class="nav-link" href="account.php">Σύνδεση/εγγραφή</a>
                 <?php } ?>

@@ -101,7 +101,9 @@
 
                         <?php if($order['approved'] == 'Όχι') { ?>
                             <td><button id="approveBtn" class="btn btn-danger">Αποδοχή</button></td>
-                        <?php }?>
+                        <?php } else {?>
+                            <td></td>
+                        <?php } ?>
                     </tr>
                 <?php }
             } else {?>
