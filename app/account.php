@@ -125,7 +125,6 @@
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">Κωδικός παραγγελίας</th>
-                        <th scope="col">Κωδικός πελάτη</th>
                         <th scope="col">Τελική τιμή</th>
                         <th scope="col">Τρόπος πληρωμής</th>
                         <th scope="col">Έγκριση</th>

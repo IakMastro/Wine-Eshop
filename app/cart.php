@@ -81,7 +81,7 @@
             if (isset($_SESSION['cart'])) {
                 foreach($_SESSION['cart'] as $product) { ?>
                     <tr>
-                        <td><span class="id" id="id"><?php echo $product['product_id'];?></span></td>
+                        <td><span class="id" id="id"><?php echo $product['id'];?></span></td>
                         <td><?php echo $product['name'];?></td>
                         <td><span class="price" id="price"><?php echo $product['cost_per_litre'];?></span></td>
                         <td><span class="qty" id="qty"><?php echo $product['quantity']?></span></td>
@@ -94,7 +94,7 @@
         </tbody>
         <tfoot>
         <tr>
-            <td colspan="2"></td>
+            <td colspan="3"></td>
             <td align="right">
                 <h3>Τελική τιμή <span id="final_price" class="final_price">0</span> &euro;</h3>
             </td>

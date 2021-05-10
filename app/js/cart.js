@@ -19,10 +19,7 @@ $(document).ready(function() {
                             litre: $(this).find('.qty').text(),
                             cost: $(this).find('.amount').text()
                         },
-                        success: function(res) {
-                            if (res == 0)
-                                alert("Duplicate bug. TODO: FIX IT!");
-                        }
+                        success: function(res) {}
                     });
                 });
 
