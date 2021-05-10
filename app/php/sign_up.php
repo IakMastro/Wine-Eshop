@@ -8,8 +8,9 @@
             die("Connection failed...").mysqli_connect_error();
         }
 
+        $password_encrypted = password_hash($password, PASSWORD_BCRYPT);
         $query = "INSERT INTO account (email, username, password, type)
-                        VALUES ('{$email}', '{$username}', '{$password}', 'user')";
+                        VALUES ('{$email}', '{$username}', '{$password_encrypted}', 'user')";
         $result = mysqli_query($conn, $query) or die("Could not perform query");
     }
 

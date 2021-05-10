@@ -8,19 +8,23 @@
             die("Connection failed...".mysqli_connect_error());
         }
 
-        $sql = "SELECT account_id, username, type FROM account
-                    WHERE email = '{$email}' AND password = '{$pwd}'";
+        $sql = "SELECT account_id, username, password, type FROM account
+                    WHERE email = '{$email}'";
         $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
 
         if (mysqli_num_rows($result) > 0) {
             session_start();
             $row = mysqli_fetch_assoc($result);
 
-            $_SESSION['account_id'] = $row['account_id'];
-            $_SESSION['username'] = $row['username'];
-            $_SESSION['type'] = $row['type'];
+            if (password_verify($pwd, $row['password'])) {
+                $_SESSION['account_id'] = $row['account_id'];
+                $_SESSION['username'] = $row['username'];
+                $_SESSION['type'] = $row['type'];
 
-            return true;
+                return true;
+            } else {
+                return false;
+            }
         }
     }
 

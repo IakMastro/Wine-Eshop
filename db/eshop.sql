@@ -39,7 +39,7 @@ CREATE TABLE order_details (
 );
 
 INSERT INTO account (email, username, password, type) VALUES (
-    "admin@kerkopoulos.gr", "admin", "admin", "admin"
+    "admin@kerkopoulos.gr", "admin", "$2y$10$VYBAknNZYUKkGcwG0A6r.OQjIB.rWs5rQnEHUq7v7u4LM0S/DdPVa", "admin"
 );
 
 INSERT INTO product (name, type, cost_per_litre) VALUES (
