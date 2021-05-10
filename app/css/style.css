@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital@1&display=swap');
+.navbar {
+    font-family: 'Noto Sans', sans-serif;
+}
+
+.jumbotron h1 {
+    font-family: 'Noto Sans', sans-serif;
+}
+
+.jumbotron p {
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.footer {
+    clear: both;
+    position: relative;
+    margin-top: 3rem;
+}
